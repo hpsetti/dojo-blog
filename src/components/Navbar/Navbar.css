@@ -1,0 +1,7 @@
+.Navbar {
+  display: flex;
+}
+
+.Navbar .header-logo {
+  font-weight: 500;
+}

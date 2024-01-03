@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import "./Components.css";
+import Navbar from "./components/Navbar/Navbar.js";
+import Blogs from "./components/Blogs/Blogs.js";
 function App() {
+  const blogPosts = [
+    {
+      id: 1,
+      title: "header 1",
+      content: "content 1",
+      author: "Mario",
+    },
+    {
+      id: 2,
+      title: "header 2",
+      content: "content 2",
+      author: "Yoshi",
+    },
+    {
+      id: 3,
+      title: "header 3",
+      content: "content 3",
+      author: "Mario",
+    },
+  ];
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Navbar />
       </header>
+      <div>
+        <Blogs blogPosts={blogPosts} />
+      </div>
     </div>
   );
 }
