@@ -1,37 +1,50 @@
+import useFetch from "./useFetch.js";
 import "./App.css";
 import "./Components.css";
 import Navbar from "./components/Navbar/Navbar.js";
 import Blogs from "./components/Blogs/Blogs.js";
+import BlogDetails from "./components/Blogs/BlogDetails.js";
+import Create from "./components/Create/Create.js";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 function App() {
-  const blogPosts = [
-    {
-      id: 1,
-      title: "header 1",
-      content: "content 1",
-      author: "Mario",
-    },
-    {
-      id: 2,
-      title: "header 2",
-      content: "content 2",
-      author: "Yoshi",
-    },
-    {
-      id: 3,
-      title: "header 3",
-      content: "content 3",
-      author: "Mario",
-    },
-  ];
+  const {
+    data: blogs,
+    isPending,
+    error,
+  } = useFetch("http://localhost:8000/blogs");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <Navbar />
-      </header>
-      <div>
-        <Blogs blogPosts={blogPosts} />
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Navbar />
+        </header>
+        <div className="content">
+          <Switch>
+            <Route exact path="/">
+              <div>
+                {isPending && <div>Loading...</div>}
+                {error && <div>{error}</div>}
+                {blogs && <Blogs blogPosts={blogs} title="All blogs" />}
+                {blogs && (
+                  <Blogs
+                    blogPosts={blogs.filter((blog) => blog.author === "Mario")}
+                    title="Mario's blogs"
+                  />
+                )}
+              </div>
+            </Route>
+            <Route path="/create">
+              <Create />
+            </Route>
+            <Route path="/blogs/:id">
+              <BlogDetails />
+            </Route>
+          </Switch>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 }
 

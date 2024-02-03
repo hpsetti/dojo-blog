@@ -1,6 +1,10 @@
 .card {
-  border: 1px solid black;
-  border-radius: 25px;
-  width: 600px;
-  height: 250px;
+  padding: 10px 25px 10px 15px;
+  color: var(--primary-color);
+  width: 450px;
+  height: 150px;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 const Navbar = () => {
   return (
@@ -9,10 +10,14 @@ const Navbar = () => {
         <div className="header-navigation">
           <ul className="header-nav d-flex justify-space-between">
             <li className="nav-home">
-              <button className="btn-secondary fw-200">Home</button>
+              <Link to="/">
+                <button className="btn-secondary fw-200">Home</button>
+              </Link>
             </li>
             <li className="nav-newBlog">
-              <button className="btn-primary fw-200">New Blog</button>
+              <Link to="/create">
+                <button className="btn-primary fw-200">New Blog</button>
+              </Link>
             </li>
           </ul>
         </div>
